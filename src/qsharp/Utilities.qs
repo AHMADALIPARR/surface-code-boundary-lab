@@ -1497,4 +1497,851 @@ namespace SurfaceCodeBoundaryLab.Utilities {
     function Coord486(d : Int, idx : Int) : (Int, Int) { return (idx % d, idx / d); }
     // Helper 487
     function Idx487(d : Int, x : Int, y : Int) : Int { return y * d + x; }
-    function Coord487(d : Int, idx : Int) : (Int, Int) { return (idx % d, idx / d); }
+    function Coord487(d : Int, idx : Int) : (Int, Int) { return (idx % d, idx / d); 
+// Additional Q# surface-code helpers
+    // Stabilizer helper block 1
+    operation ApplyCheck1(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 2
+    operation ApplyCheck2(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 3
+    operation ApplyCheck3(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 4
+    operation ApplyCheck4(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 5
+    operation ApplyCheck5(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 6
+    operation ApplyCheck6(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 7
+    operation ApplyCheck7(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 8
+    operation ApplyCheck8(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 9
+    operation ApplyCheck9(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 10
+    operation ApplyCheck10(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 11
+    operation ApplyCheck11(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 12
+    operation ApplyCheck12(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 13
+    operation ApplyCheck13(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 14
+    operation ApplyCheck14(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 15
+    operation ApplyCheck15(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 16
+    operation ApplyCheck16(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 17
+    operation ApplyCheck17(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 18
+    operation ApplyCheck18(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 19
+    operation ApplyCheck19(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 20
+    operation ApplyCheck20(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 21
+    operation ApplyCheck21(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 22
+    operation ApplyCheck22(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 23
+    operation ApplyCheck23(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 24
+    operation ApplyCheck24(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 25
+    operation ApplyCheck25(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 26
+    operation ApplyCheck26(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 27
+    operation ApplyCheck27(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 28
+    operation ApplyCheck28(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 29
+    operation ApplyCheck29(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 30
+    operation ApplyCheck30(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 31
+    operation ApplyCheck31(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 32
+    operation ApplyCheck32(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 33
+    operation ApplyCheck33(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 34
+    operation ApplyCheck34(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 35
+    operation ApplyCheck35(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 36
+    operation ApplyCheck36(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 37
+    operation ApplyCheck37(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 38
+    operation ApplyCheck38(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 39
+    operation ApplyCheck39(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 40
+    operation ApplyCheck40(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 41
+    operation ApplyCheck41(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 42
+    operation ApplyCheck42(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 43
+    operation ApplyCheck43(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 44
+    operation ApplyCheck44(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 45
+    operation ApplyCheck45(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 46
+    operation ApplyCheck46(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 47
+    operation ApplyCheck47(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 48
+    operation ApplyCheck48(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 49
+    operation ApplyCheck49(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 50
+    operation ApplyCheck50(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 51
+    operation ApplyCheck51(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 52
+    operation ApplyCheck52(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 53
+    operation ApplyCheck53(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 54
+    operation ApplyCheck54(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 55
+    operation ApplyCheck55(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 56
+    operation ApplyCheck56(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 57
+    operation ApplyCheck57(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 58
+    operation ApplyCheck58(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 59
+    operation ApplyCheck59(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 60
+    operation ApplyCheck60(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 61
+    operation ApplyCheck61(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 62
+    operation ApplyCheck62(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 63
+    operation ApplyCheck63(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 64
+    operation ApplyCheck64(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 65
+    operation ApplyCheck65(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 66
+    operation ApplyCheck66(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 67
+    operation ApplyCheck67(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 68
+    operation ApplyCheck68(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 69
+    operation ApplyCheck69(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 70
+    operation ApplyCheck70(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 71
+    operation ApplyCheck71(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 72
+    operation ApplyCheck72(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 73
+    operation ApplyCheck73(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 74
+    operation ApplyCheck74(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 75
+    operation ApplyCheck75(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 76
+    operation ApplyCheck76(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 77
+    operation ApplyCheck77(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 78
+    operation ApplyCheck78(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 79
+    operation ApplyCheck79(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 80
+    operation ApplyCheck80(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 81
+    operation ApplyCheck81(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 82
+    operation ApplyCheck82(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 83
+    operation ApplyCheck83(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 84
+    operation ApplyCheck84(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 85
+    operation ApplyCheck85(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 86
+    operation ApplyCheck86(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 87
+    operation ApplyCheck87(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 88
+    operation ApplyCheck88(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 89
+    operation ApplyCheck89(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 90
+    operation ApplyCheck90(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 91
+    operation ApplyCheck91(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 92
+    operation ApplyCheck92(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 93
+    operation ApplyCheck93(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 94
+    operation ApplyCheck94(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 95
+    operation ApplyCheck95(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 96
+    operation ApplyCheck96(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 97
+    operation ApplyCheck97(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 98
+    operation ApplyCheck98(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 99
+    operation ApplyCheck99(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 100
+    operation ApplyCheck100(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 101
+    operation ApplyCheck101(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 102
+    operation ApplyCheck102(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 103
+    operation ApplyCheck103(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 104
+    operation ApplyCheck104(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 105
+    operation ApplyCheck105(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 106
+    operation ApplyCheck106(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 107
+    operation ApplyCheck107(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 108
+    operation ApplyCheck108(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 109
+    operation ApplyCheck109(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 110
+    operation ApplyCheck110(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 111
+    operation ApplyCheck111(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 112
+    operation ApplyCheck112(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 113
+    operation ApplyCheck113(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 114
+    operation ApplyCheck114(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 115
+    operation ApplyCheck115(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 116
+    operation ApplyCheck116(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 117
+    operation ApplyCheck117(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 118
+    operation ApplyCheck118(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 119
+    operation ApplyCheck119(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 120
+    operation ApplyCheck120(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 121
+    operation ApplyCheck121(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 122
+    operation ApplyCheck122(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 123
+    operation ApplyCheck123(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 124
+    operation ApplyCheck124(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 125
+    operation ApplyCheck125(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 126
+    operation ApplyCheck126(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 127
+    operation ApplyCheck127(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 128
+    operation ApplyCheck128(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 129
+    operation ApplyCheck129(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 130
+    operation ApplyCheck130(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 131
+    operation ApplyCheck131(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 132
+    operation ApplyCheck132(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 133
+    operation ApplyCheck133(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 134
+    operation ApplyCheck134(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 135
+    operation ApplyCheck135(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 136
+    operation ApplyCheck136(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 137
+    operation ApplyCheck137(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 138
+    operation ApplyCheck138(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 139
+    operation ApplyCheck139(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 140
+    operation ApplyCheck140(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 141
+    operation ApplyCheck141(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 142
+    operation ApplyCheck142(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 143
+    operation ApplyCheck143(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 144
+    operation ApplyCheck144(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 145
+    operation ApplyCheck145(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 146
+    operation ApplyCheck146(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 147
+    operation ApplyCheck147(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 148
+    operation ApplyCheck148(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 149
+    operation ApplyCheck149(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 150
+    operation ApplyCheck150(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 151
+    operation ApplyCheck151(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 152
+    operation ApplyCheck152(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 153
+    operation ApplyCheck153(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 154
+    operation ApplyCheck154(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 155
+    operation ApplyCheck155(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 156
+    operation ApplyCheck156(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 157
+    operation ApplyCheck157(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 158
+    operation ApplyCheck158(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 159
+    operation ApplyCheck159(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 160
+    operation ApplyCheck160(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 161
+    operation ApplyCheck161(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 162
+    operation ApplyCheck162(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 163
+    operation ApplyCheck163(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 164
+    operation ApplyCheck164(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 165
+    operation ApplyCheck165(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 166
+    operation ApplyCheck166(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 167
+    operation ApplyCheck167(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 168
+    operation ApplyCheck168(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+    // Stabilizer helper block 169
+    operation ApplyCheck169(data : Qubit[], anc : Qubit, idxs : Int[]) : Unit {
+        for idx in idxs { CNOT(data[idx], anc); }
+    }
+
+}
