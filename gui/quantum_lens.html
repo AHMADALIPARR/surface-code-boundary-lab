@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Voyager Quantum Lens</title>
+<style>
+  :root { --bg:#050508; --paper:#eceae4; --cyan:#00E5FF; --emerald:#00FF66; --violet:#9D00FF; --crimson:#FF0055; }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--paper); font-family:ui-monospace,monospace; }
+  header { text-align:center; padding:1.2rem 1rem .4rem; }
+  header h1 { margin:0; color:var(--cyan); letter-spacing:.15em; font-size:1rem; }
+  header p { margin:.3rem 0 0; color:#8a8a9e; font-size:.75rem; }
+  #wrap { display:flex; justify-content:center; padding:.5rem; }
+  canvas { background:#050508; border-radius:8px; box-shadow:0 0 24px rgba(0,229,255,.12); }
+  .legend { display:flex; justify-content:center; gap:1.5rem; flex-wrap:wrap; padding:.8rem 1rem 1.2rem; font-size:.7rem; color:#b0b0c0; }
+  .legend b { font-weight:600; }
+  .controls { text-align:center; padding-bottom:1rem; }
+  button { background:#1a1b1d; color:var(--paper); border:1px solid #333; padding:.35rem .8rem; font-family:inherit; cursor:pointer; margin:0 .2rem; }
+  button:hover { border-color:var(--cyan); color:var(--cyan); }
+</style>
+</head>
+<body>
+<header>
+  <h1>VOYAGER MANUSCRIPT · QUANTUM LENS</h1>
+  <p>Spine 64 Shadow Prime Bifurcation · Many-Worlds Maze</p>
+</header>
+<div id="wrap">
+  <canvas id="lens" width="760" height="400"></canvas>
+</div>
+<div class="legend">
+  <span>🟢 <b style="color:#00FF66">COHERENT</b> QSL valid</span>
+  <span>🔵 <b style="color:#00E5FF">BIFURCATING</b> multiplicity cascade</span>
+  <span>🟣 <b style="color:#9D00FF">SHADOW</b> zeta resonance</span>
+  <span>🔴 <b style="color:#FF0055">PRUNED</b> sector leakage</span>
+</div>
+<div class="controls">
+  <button id="reset">Reset</button>
+  <button id="pause">Pause</button>
+</div>
+<script>
+const canvas = document.getElementById('lens');
+const ctx = canvas.getContext('2d');
+let nodes = [];
+let step = 0;
+let running = true;
+
+const COLORS = { coherent:'#00FF66', bifurcate:'#00E5FF', shadow:'#9D00FF', leak:'#FF0055' };
+
+function spawnRoot() {
+  return {
+    x: canvas.width/2 + (Math.random()*40-20),
+    y: canvas.height - 30,
+    vy: -1.6 - Math.random()*0.6,
+    color: COLORS.coherent,
+    gen: 0
+  };
+}
+function init() { nodes = [spawnRoot(), spawnRoot()]; }
+
+function frame() {
+  if (!running) { requestAnimationFrame(frame); return; }
+  ctx.fillStyle = 'rgba(5,5,8,0.18)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  step += 0.02;
+
+  for (let i = nodes.length-1; i >= 0; i--) {
+    const n = nodes[i];
+    n.x += Math.sin(step + n.gen) * 1.2;
+    n.y += n.vy;
+
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, Math.max(1.2, 4 - n.gen*0.6), 0, Math.PI*2);
+    ctx.fillStyle = n.color;
+    ctx.shadowBlur = 12;
+    ctx.shadowColor = n.color;
+    ctx.fill();
+    ctx.shadowBlur = 0;
+
+    // Bifurcation
+    if (n.y < canvas.height*0.55 && n.gen < 5 && Math.random() < 0.06) {
+      n.color = COLORS.bifurcate;
+      const spread = 22 / (n.gen+1);
+      const roll = Math.random();
+      nodes.push({
+        x: n.x - spread, y: n.y, vy: -1.5,
+        color: roll < 0.25 ? COLORS.leak : COLORS.shadow,
+        gen: n.gen+1
+      });
+      nodes.push({
+        x: n.x + spread, y: n.y, vy: -1.5,
+        color: COLORS.coherent,
+        gen: n.gen+1
+      });
+    }
+    // Prune leaks and off-canvas
+    if (n.y < 10 || n.color === COLORS.leak) nodes.splice(i, 1);
+  }
+  if (nodes.length < 12) nodes.push(spawnRoot());
+  if (nodes.length > 200) nodes.splice(0, nodes.length-200);
+  requestAnimationFrame(frame);
+}
+
+document.getElementById('reset').onclick = () => { init(); };
+document.getElementById('pause').onclick = (e) => {
+  running = !running;
+  e.target.textContent = running ? 'Pause' : 'Resume';
+};
+init();
+frame();
+</script>
+</body>
+</html>

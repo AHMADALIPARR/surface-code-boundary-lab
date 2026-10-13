@@ -7,6 +7,25 @@ Production repository for multi-backend surface-code stabilizer extraction, boun
 Copyright (C) 2026 SnapKitty Collective / Bel esprit D'accord Trust.  
 Licensed under the GNU Affero General Public License v3 or later. See [LICENSE](LICENSE).
 
+
+## Live Quantum Lens
+
+GitHub README does not execute embedded scripts. The interactive canvas lives here:
+
+**[gui/quantum_lens.html](gui/quantum_lens.html)** — Spine 64 bifurcation lens
+
+Color key:
+- 🟢 Emerald — coherent (QSL valid)
+- 🔵 Cyan — bifurcating (multiplicity cascade)
+- 🟣 Violet — shadow-prime resonance
+- 🔴 Crimson — pruned (sector leakage)
+
+Open locally:
+```sh
+python -m http.server 8080
+# http://localhost:8080/gui/quantum_lens.html
+```
+
 ## Overview
 
 A finite surface code protects logical information by topology, but the topology has edges. The vulnerability index used here is the shortest path on the decoder matching graph from a detector to the nearest boundary node. Short distances (warm colors in the map below) indicate higher vulnerability; longer distances indicate greater protection.
