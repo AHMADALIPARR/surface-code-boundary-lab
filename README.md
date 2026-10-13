@@ -24,6 +24,8 @@ Three independent circuit descriptions feed a common analysis path:
 4. **Distance calculation** — For every detector the shortest path to a boundary is recorded. These distances become the vulnerability index.
 5. **Visualization** — A React Three Fiber frontend receives live telemetry over WebSocket and renders the lattice with active defects in red and MWPM routing paths in gold.
 
+![Pipeline](visuals/pipeline.svg)
+
 The analysis stage is specified by a contract (`docs/ANALYSIS_CONTRACT.md`) rather than by a single monolithic script, so alternative decoders or coordinate extractors can be substituted without rewriting the rest of the pipeline.
 
 ## Directory Layout
@@ -101,6 +103,10 @@ The concrete implementation is `scripts/analyze_boundary_vulnerability.py`. It l
 That JSON is the machine-readable form of the vulnerability map. Because the distance is currently unweighted, it counts edges rather than the sum of log-likelihood ratios. When the noise is uniform the two quantities are monotonic; when the noise is biased they diverge, and a weighted version is a natural extension.
 
 ## Vulnerability Map
+
+![Vulnerability Map: Detector-to-Boundary MWPM Distance](visuals/vulnerability_map.jpg)
+
+The image below shows a 7×7 detector lattice. Each node is annotated with a detector identifier and a numerical vulnerability index equal to the shortest MWPM distance to a physical boundary. Color encodes the index. A dashed rectangle marks the physical boundary interface. Corner and edge detectors receive the lowest indices; the central detector receives the highest. This is the spatial signature the laboratory is designed to make reproducible.
 
 The image `visuals/vulnerability_map.jpg` shows a 7×7 detector lattice. Each node is annotated with a detector identifier and a numerical vulnerability index equal to the shortest MWPM distance to a physical boundary. Color encodes the index. A dashed rectangle marks the physical boundary interface. Corner and edge detectors receive the lowest indices; the central detector receives the highest. This is the spatial signature the laboratory is designed to make reproducible.
 
