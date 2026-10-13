@@ -76,7 +76,6 @@ When processed through the 64-spine tensor engine, the hex cipher unpacks the en
 
 Shadow Prime Continuum and Hex Cipher matrix supplied for formalization.  
 Novel linkage to the 64-layer Premidoral spine under the Bel esprit D'accord Trust.  
-Original multiplicity-theoretic claims remain cited to Van Gelder / Multiplicity Foundation where applicable.
 
 ## License
 
