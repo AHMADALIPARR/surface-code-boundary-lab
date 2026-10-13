@@ -1,0 +1,16 @@
+# Copyright (C) 2026 SnapKitty Collective
+# Surface Code Boundary Lab; AGPL-3.0-or-later. See ../LICENSE.
+# Five qubits: data d0,d1,d2 and parity ancillas a0,a1.
+# A middle-data X fault is injected deterministically for the baseline.
+R 0 1 2 3 4
+X_ERROR(0.001) 0 1 2
+X 1
+# Noisy parity extraction.
+CX 0 3
+CX 1 3
+CX 1 4
+CX 2 4
+X_ERROR(0.001) 3 4
+M 3 4
+DETECTOR(0, 0) rec[-2]
+DETECTOR(1, 0) rec[-1]
