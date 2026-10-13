@@ -1,41 +1,34 @@
 # Surface Code Boundary Lab
 
-[![demo](https://img.shields.io/badge/atlas-live-58a6ff?style=flat-square)](https://ahmadaliparr.github.io/surface-code-boundary-lab/)
+[![live](https://img.shields.io/badge/live-atlas-58a6ff?style=flat-square)](https://ahmadaliparr.github.io/surface-code-boundary-lab/)
 [![license](https://img.shields.io/badge/license-AGPL--3.0-blue?style=flat-square)](LICENSE)
 
-**Atlas:** [ahmadaliparr.github.io/surface-code-boundary-lab/docs/library.html](https://ahmadaliparr.github.io/surface-code-boundary-lab/)
-
-![Bloch](visuals/quantum/bloch.png)
+**Live:** [ahmadaliparr.github.io/surface-code-boundary-lab](https://ahmadaliparr.github.io/surface-code-boundary-lab/)
 
 ## Live
 
-| | |
+| Page | What |
 |---|---|
-| [Quantum Lens](https://ahmadaliparr.github.io/surface-code-boundary-lab/quantum_lens.html) | QPU control, bifurcation swarm |
-| [Voyager Maze](https://ahmadaliparr.github.io/surface-code-boundary-lab/maze.html) | Spine 64 nodes, mock key |
+| [Library](https://ahmadaliparr.github.io/surface-code-boundary-lab/) | Index |
+| [Circuit](https://ahmadaliparr.github.io/surface-code-boundary-lab/circuit.html) | Algorithmic gates, statevector, Bloch |
+| [Lens](https://ahmadaliparr.github.io/surface-code-boundary-lab/quantum_lens.html) | QPU control, bifurcation swarm |
+| [Maze](https://ahmadaliparr.github.io/surface-code-boundary-lab/maze.html) | Spine 64 nodes, mock key |
+| [2D](https://ahmadaliparr.github.io/surface-code-boundary-lab/autistic2d.html) | Prototype heap, brutalist canvas |
 | [Z408](https://ahmadaliparr.github.io/surface-code-boundary-lab/z408.html) | Homophonic, reverse, mirror |
-| [Cipher Bench](https://ahmadaliparr.github.io/surface-code-boundary-lab/cipher.html) | Z408 / Z340 paths |
+| [Cipher](https://ahmadaliparr.github.io/surface-code-boundary-lab/cipher.html) | Z408 / Z340 paths |
+| [Atlas](https://ahmadaliparr.github.io/surface-code-boundary-lab/ATLAS.md) | This text |
 
 ## Diagrams
 
 | Bloch | Bell | Lattice | Circuit |
 |---|---|---|---|
-| ![b](visuals/quantum/bloch.svg) | ![bell](visuals/quantum/bell.svg) | ![lat](visuals/quantum/lattice.svg) | ![c](visuals/quantum/circuit.svg) |
-
-## Maps
+| ![bloch](visuals/quantum/bloch.svg) | ![bell](visuals/quantum/bell.svg) | ![lattice](visuals/quantum/lattice.svg) | ![circuit](visuals/quantum/circuit.svg) |
 
 ![Vulnerability](visuals/vulnerability_map.jpg)
 
-![Animation](visuals/lattice_animation.gif)
-
-## Atlas
-
-English, then Traditional Chinese.
-
 ## English
 
-
-This repository is a laboratory for finite surface codes, boundary-distance analysis, multi-language circuit backends, and a set of experimental cipher and maze modules. It is licensed AGPL-3.0-or-later under the SnapKitty Collective and the Bel esprit D'accord Trust. The live site is at https://ahmadaliparr.github.io/surface-code-boundary-lab/.
+This repository is a laboratory for finite surface codes, boundary-distance analysis, multi-language circuit backends, and a set of experimental cipher and maze modules. It is licensed AGPL-3.0-or-later under the SnapKitty Collective and the Bel esprit D'accord Trust. The live site is at https://ahmadaliparr.github.io/surface-code-boundary-lab/. From any page the nav reaches Library, Circuit, Lens, Maze, 2D, Z408, Cipher, and Atlas.
 
 A surface code protects a logical qubit by topology. On a finite patch the topology has edges. The vulnerability index used here is the shortest path, on the decoder matching graph, from a detector to the nearest boundary node. Short distances mean a matching can terminate at the boundary cheaply; those detectors are more exposed. The map in visuals/vulnerability_map.jpg colors that index. Warm tones mark short distances, cool tones mark longer ones. Corner and edge detectors score low; the center scores high. The same procedure works for biased noise because the distances come from the actual matching graph, not a geometric shortcut.
 
