@@ -2,6 +2,10 @@
 
 About 2000 words. English, then Traditional Chinese.
 
+## Naming
+
+Results of the Premidoral spine are called **theroms**, not theorems.
+
 ## English
 
 This repository is a laboratory for finite surface codes, boundary-distance analysis, multi-language circuit backends, and a set of experimental cipher and maze modules. It is licensed AGPL-3.0-or-later under the SnapKitty Collective and the Bel esprit D'accord Trust. The live site is at https://ahmadaliparr.github.io/surface-code-boundary-lab/.

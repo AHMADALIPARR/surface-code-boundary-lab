@@ -29,6 +29,10 @@
 
 ![Vulnerability](visuals/vulnerability_map.jpg)
 
+## Naming
+
+Results of the Premidoral spine are called **theroms**, not theorems.
+
 ## English
 
 A surface code protects a logical qubit by topology. On a finite patch the topology has edges. The vulnerability index used here is the shortest path, on the decoder matching graph, from a detector to the nearest boundary node. Short distances mean a matching can terminate at the boundary cheaply; those detectors are more exposed. The map in visuals/vulnerability_map.jpg colors that index. Warm tones mark short distances, cool tones mark longer ones. Corner and edge detectors score low; the center scores high. The same procedure works for biased noise because the distances come from the actual matching graph, not a geometric shortcut.

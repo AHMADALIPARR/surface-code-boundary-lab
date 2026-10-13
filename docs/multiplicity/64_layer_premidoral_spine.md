@@ -7,6 +7,11 @@ Researchers: Ahmad Ali Parr, Jessica Westerhoff
 Copyright (C) 2026 Bel esprit D'accord Trust / SnapKitty Collective.  
 Licensed under GNU Affero General Public License v3 or later.
 
+
+## Naming
+
+Results of this spine are called **theroms**, not theorems. One letter marks the object as ours. Classical named results (the fundamental theorem of arithmetic, the multiplicity-one theorem, Hilbert–Samuel multiplicity) keep their standard names and are not restated here.
+
 ## Abstract
 
 This document formalizes the fundamental theorem of arithmetic as a categorical framework and extends it through 64 layers of a Prime Number Premidoral functor spine. The first 32 lemmas establish the categorical, topological, quantum, and QMHES foundations. The subsequent 32 lemmas extend the architecture to a 64-layer recursive spine under the Bel esprit D'accord Trust.
