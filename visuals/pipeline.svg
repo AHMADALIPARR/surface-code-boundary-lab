@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+<title id="title">Surface Code Boundary Lab pipeline</title>
+<desc id="desc">Three independent quantum circuit backends feed a validated circuit/noise definition, then Stim DEM extraction, PyMatching decoding graph analysis, and visualization.</desc>
+<defs>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#64748b"/></marker>
+  <style>
+    .h{font:700 27px sans-serif;fill:#0f172a}.t{font:600 18px sans-serif;fill:#0f172a}.s{font:14px sans-serif;fill:#334155}.b{stroke:#475569;stroke-width:2;rx:14}.a{stroke:#64748b;stroke-width:2.5;fill:none;marker-end:url(#arrow)}
+  </style>
+</defs>
+<rect width="1200" height="760" fill="#f8fafc"/>
+<text x="600" y="48" text-anchor="middle" class="h">Surface Code Boundary Lab</text>
+<text x="600" y="76" text-anchor="middle" class="s">Multi-backend syndrome experiment • DEM analysis • graph visualization</text>
+<rect x="60" y="120" width="320" height="92" fill="#dbeafe" class="b"/>
+<text x="220" y="154" text-anchor="middle" class="t">Quipper / Haskell</text><text x="220" y="180" text-anchor="middle" class="s">Circuit description</text>
+<rect x="440" y="120" width="320" height="92" fill="#dcfce7" class="b"/>
+<text x="600" y="154" text-anchor="middle" class="t">Q#</text><text x="600" y="180" text-anchor="middle" class="s">Circuit description</text>
+<rect x="820" y="120" width="320" height="92" fill="#fef3c7" class="b"/>
+<text x="980" y="154" text-anchor="middle" class="t">CUDA-Q / C++</text><text x="980" y="180" text-anchor="middle" class="s">Circuit description / target</text>
+<path d="M220 212 V250 H600 V278 M600 212 V278 M980 212 V250 H600" class="a"/>
+<rect x="340" y="280" width="520" height="76" fill="#e2e8f0" class="b"/>
+<text x="600" y="310" text-anchor="middle" class="t">Circuit + noise-model validation</text><text x="600" y="334" text-anchor="middle" class="s">Consistent measurements, detectors, coordinates, provenance</text>
+<path d="M600 356 V394" class="a"/>
+<rect x="340" y="396" width="520" height="76" fill="#ede9fe" class="b"/>
+<text x="600" y="426" text-anchor="middle" class="t">Stim Detector Error Model</text><text x="600" y="450" text-anchor="middle" class="s">Fault probabilities and detector symptoms</text>
+<path d="M600 472 V510" class="a"/>
+<rect x="340" y="512" width="520" height="76" fill="#cffafe" class="b"/>
+<text x="600" y="542" text-anchor="middle" class="t">PyMatching + NetworkX</text><text x="600" y="566" text-anchor="middle" class="s">Decode • inspect graph • calculate justified paths</text>
+<path d="M600 588 V626" class="a"/>
+<rect x="260" y="628" width="680" height="80" fill="#fee2e2" class="b"/>
+<text x="600" y="659" text-anchor="middle" class="t">Detector-distance visualization + audit report</text><text x="600" y="685" text-anchor="middle" class="s">Graph metric, not automatically physical topology or hardware telemetry</text>
+</svg>
