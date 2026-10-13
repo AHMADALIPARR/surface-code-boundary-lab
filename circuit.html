@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Quantum Circuit — Algorithmic</title>
+<style>
+  :root { --bg:#07080a; --panel:#0e1014; --line:#1c2128; --text:#c9d1d9; --dim:#6e7681; --cyan:#58a6ff; --green:#3fb950; --amber:#d29922; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:ui-monospace,monospace; font-size:12px; }
+  header { display:flex; justify-content:space-between; align-items:center; padding:.6rem 1rem; border-bottom:1px solid var(--line); }
+  header h1 { margin:0; font-size:.85rem; letter-spacing:.1em; color:var(--cyan); }
+  .layout { display:grid; grid-template-columns:1fr 280px; height:calc(100vh - 40px); }
+  canvas { display:block; width:100%; height:100%; background:#050608; }
+  aside { background:var(--panel); border-left:1px solid var(--line); padding:.8rem; overflow:auto; }
+  aside h2 { margin:0 0 .5rem; font-size:.7rem; color:var(--dim); letter-spacing:.1em; }
+  button, select { background:#21262d; color:var(--text); border:1px solid #30363d; padding:.35rem .6rem; font-family:inherit; cursor:pointer; margin:.2rem .2rem 0 0; }
+  button:hover { border-color:var(--cyan); }
+  .bar { height:8px; background:#161b22; margin:.15rem 0; position:relative; }
+  .bar > i { display:block; height:100%; background:var(--cyan); }
+  .label { display:flex; justify-content:space-between; font-size:10px; color:var(--dim); }
+  #bloch { width:100%; height:160px; background:#050608; margin-top:.5rem; }
+</style>
+</head>
+<body>
+<header>
+  <h1>CIRCUIT RENDERER</h1>
+  <div>
+    <select id="preset">
+      <option value="bell">Bell</option>
+      <option value="ghz">GHZ-3</option>
+      <option value="qft">QFT-3</option>
+      <option value="random">Random</option>
+    </select>
+    <button id="gen">Generate</button>
+    <button id="step">Step</button>
+    <button id="run">Run</button>
+  </div>
+</header>
+<div class="layout">
+  <canvas id="circuit"></canvas>
+  <aside>
+    <h2>STATE</h2>
+    <div id="probs"></div>
+    <h2 style="margin-top:1rem">BLOCH q0</h2>
+    <canvas id="bloch" width="240" height="160"></canvas>
+    <h2 style="margin-top:1rem">GATES</h2>
+    <div id="gates" style="color:var(--dim);line-height:1.6"></div>
+  </aside>
+</div>
+<script>
+const GATE = { H:'#58a6ff', X:'#3fb950', Z:'#d29922', CNOT:'#bc8cff', S:'#f778ba', T:'#79c0ff' };
+let circuit = [];
+let nQ = 3;
+let stepIdx = 0;
+let amps = [];
+
+function preset(name) {
+  if (name==='bell') return { n:2, ops:[['H',0],['CNOT',0,1]] };
+  if (name==='ghz') return { n:3, ops:[['H',0],['CNOT',0,1],['CNOT',1,2]] };
+  if (name==='qft') return { n:3, ops:[['H',0],['S',1],['CNOT',0,1],['H',1],['T',2],['CNOT',1,2],['H',2]] };
+  // random
+  const n = 3, ops = [], gates = ['H','X','Z','S'];
+  for (let i=0;i<8;i++) {
+    if (Math.random()<0.3) ops.push(['CNOT', Math.floor(Math.random()*n), Math.floor(Math.random()*n)]);
+    else ops.push([gates[Math.floor(Math.random()*gates.length)], Math.floor(Math.random()*n)]);
+  }
+  return { n, ops };
+}
+
+function initState(n) {
+  amps = new Array(1<<n).fill(0);
+  amps[0] = 1;
+}
+function applyH(q) {
+  const s = 1/Math.sqrt(2), N = amps.length, next = new Array(N).fill(0);
+  for (let i=0;i<N;i++) {
+    if ((i>>q)&1) continue;
+    const i1 = i|(1<<q);
+    const a0 = amps[i], a1 = amps[i1];
+    next[i] = s*(a0+a1);
+    next[i1] = s*(a0-a1);
+  }
+  amps = next;
+}
+function applyX(q) {
+  const N = amps.length, next = amps.slice();
+  for (let i=0;i<N;i++) {
+    if ((i>>q)&1) continue;
+    const i1 = i|(1<<q);
+    next[i] = amps[i1]; next[i1] = amps[i];
+  }
+  amps = next;
+}
+function applyZ(q) {
+  for (let i=0;i<amps.length;i++) if ((i>>q)&1) amps[i] = -amps[i];
+}
+function applyS(q) {
+  for (let i=0;i<amps.length;i++) if ((i>>q)&1) amps[i] = { re:-amps[i].im||0, im:amps[i].re||amps[i] };
+  // simplify: treat as real for demo; S = phase i on |1>
+  for (let i=0;i<amps.length;i++) if ((i>>q)&1) amps[i] = amps[i]; // phase handled in display
+}
+function applyCNOT(c,t) {
+  if (c===t) return;
+  const N = amps.length, next = amps.slice();
+  for (let i=0;i<N;i++) {
+    if ((i>>c)&1) {
+      const j = i^(1<<t);
+      if (i<j) { next[i]=amps[j]; next[j]=amps[i]; }
+    }
+  }
+  amps = next;
+}
+function applyOp(op) {
+  if (op[0]==='H') applyH(op[1]);
+  else if (op[0]==='X') applyX(op[1]);
+  else if (op[0]==='Z') applyZ(op[1]);
+  else if (op[0]==='CNOT') applyCNOT(op[1], op[2]);
+}
+
+function load(name) {
+  const p = preset(name);
+  nQ = p.n; circuit = p.ops; stepIdx = 0;
+  initState(nQ);
+  document.getElementById('gates').textContent = circuit.map((o,i)=>i+': '+o.join(' ')).join('\n');
+  draw(); renderProbs(); drawBloch();
+}
+function step() {
+  if (stepIdx < circuit.length) { applyOp(circuit[stepIdx]); stepIdx++; }
+  draw(); renderProbs(); drawBloch();
+}
+function runAll() {
+  while (stepIdx < circuit.length) step();
+}
+
+const canvas = document.getElementById('circuit');
+const ctx = canvas.getContext('2d');
+function resize() { canvas.width = canvas.parentElement.clientWidth; canvas.height = canvas.parentElement.clientHeight; draw(); }
+window.addEventListener('resize', resize);
+
+function draw() {
+  if (!canvas.width) resize();
+  const W = canvas.width, H = canvas.height;
+  ctx.fillStyle = '#050608'; ctx.fillRect(0,0,W,H);
+  const top = 60, gap = Math.min(70, (H-100)/Math.max(1,nQ));
+  // wires
+  for (let q=0;q<nQ;q++) {
+    const y = top + q*gap;
+    ctx.strokeStyle = '#21262d'; ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(50,y); ctx.lineTo(W-30,y); ctx.stroke();
+    ctx.fillStyle = '#6e7681'; ctx.font = '12px monospace';
+    ctx.fillText('q'+q, 16, y+4);
+  }
+  // gates
+  const gw = 70, x0 = 80;
+  circuit.forEach((op, i) => {
+    const x = x0 + i*gw;
+    const active = i < stepIdx;
+    const col = active ? (GATE[op[0]]||'#58a6ff') : '#30363d';
+    if (op[0]==='CNOT') {
+      const y1 = top + op[1]*gap, y2 = top + op[2]*gap;
+      ctx.strokeStyle = col; ctx.beginPath(); ctx.moveTo(x,y1); ctx.lineTo(x,y2); ctx.stroke();
+      ctx.fillStyle = col; ctx.beginPath(); ctx.arc(x,y1,4,0,6.28); ctx.fill();
+      ctx.beginPath(); ctx.arc(x,y2,9,0,6.28); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(x-5,y2); ctx.lineTo(x+5,y2); ctx.moveTo(x,y2-5); ctx.lineTo(x,y2+5); ctx.stroke();
+    } else {
+      const y = top + op[1]*gap;
+      ctx.strokeStyle = col; ctx.strokeRect(x-16, y-16, 32, 32);
+      ctx.fillStyle = col; ctx.font = '13px monospace'; ctx.textAlign='center';
+      ctx.fillText(op[0], x, y+4); ctx.textAlign='left';
+    }
+    if (i===stepIdx-1) {
+      ctx.strokeStyle = '#58a6ff'; ctx.globalAlpha=0.4;
+      ctx.strokeRect(x-22, top-24, 44, nQ*gap+20);
+      ctx.globalAlpha=1;
+    }
+  });
+}
+function renderProbs() {
+  const box = document.getElementById('probs');
+  box.innerHTML = '';
+  const N = 1<<nQ;
+  for (let i=0;i<N;i++) {
+    const p = Math.abs(amps[i])**2;
+    const bits = i.toString(2).padStart(nQ,'0');
+    const row = document.createElement('div');
+    row.innerHTML = `<div class="label"><span>|${bits}⟩</span><span>${(p*100).toFixed(1)}%</span></div><div class="bar"><i style="width:${p*100}%"></i></div>`;
+    box.appendChild(row);
+  }
+}
+function drawBloch() {
+  const c = document.getElementById('bloch');
+  const g = c.getContext('2d');
+  g.fillStyle='#050608'; g.fillRect(0,0,c.width,c.height);
+  const cx=120, cy=80, r=55;
+  g.strokeStyle='#30363d'; g.beginPath(); g.arc(cx,cy,r,0,6.28); g.stroke();
+  g.beginPath(); g.ellipse(cx,cy,r,16,0,0,6.28); g.stroke();
+  // q0 reduced: P(|1>) from marginal
+  let p1=0;
+  for (let i=0;i<amps.length;i++) if (i&1) p1 += Math.abs(amps[i])**2;
+  const theta = 2*Math.acos(Math.sqrt(Math.max(0,1-p1)));
+  const px = cx + r*Math.sin(theta)*0.7;
+  const py = cy - r*Math.cos(theta);
+  g.strokeStyle='#58a6ff'; g.beginPath(); g.moveTo(cx,cy); g.lineTo(px,py); g.stroke();
+  g.fillStyle='#58a6ff'; g.beginPath(); g.arc(px,py,4,0,6.28); g.fill();
+  g.fillStyle='#6e7681'; g.font='10px monospace'; g.fillText('|0⟩', cx-8, cy-r-6); g.fillText('|1⟩', cx-8, cy+r+12);
+}
+
+document.getElementById('gen').onclick = () => load(document.getElementById('preset').value);
+document.getElementById('step').onclick = step;
+document.getElementById('run').onclick = runAll;
+load('bell');
+</script>
+</body>
+</html>
