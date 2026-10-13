@@ -49,6 +49,11 @@ Pages publishes the repository root. That is why circuit.html, quantum_lens.html
 
 What this laboratory measures is a distance on a matching graph. What it provides is that distance, computed the same way, from several languages, plus a visualization, plus a set of experimental modules that share the Spine 64 tokens. The atlas is the map of those pieces.
 
+
+Release v0.1.0 tags the public snapshot. Topics on the repository are quantum-computing, surface-code, error-correction, mlir, cryptography, and qrng. The README is a short atlas with links. This file is the longer one. A reader who only wants to run something should start with the Makefile. A reader who wants the geometry should start with the vulnerability map and the analysis contract. A reader who wants the experimental modules should start with the maze and the cipher packages.
+
+The continuous-integration workflow installs Python 3.11, generates a Stim circuit, runs the MLIR interpreter, then compiles and executes the C, C++, and Fortran backends on Ubuntu. A green run means those entry points still build.
+
 ## 繁體中文
 
 本儲存庫是一個有限表面碼實驗室，包含邊界距離分析、多語言電路後端，以及一組實驗性的密碼與迷宮模組。授權為 AGPL-3.0 或更新版本，歸屬於 SnapKitty Collective 與 Bel esprit D'accord Trust。線上站點位於 https://ahmadaliparr.github.io/surface-code-boundary-lab/。
