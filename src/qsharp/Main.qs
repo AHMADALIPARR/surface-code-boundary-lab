@@ -3,41 +3,52 @@
 // Licensed under GNU Affero General Public License v3 or later. See ../../LICENSE.
 
 namespace SurfaceCodeBoundaryLab {
-    // Small rotated surface-code style stabilizer round (distance-3 fragment).
-    // Measures a 2x2 patch of Z-stabilizers on data qubits arranged as:
-    //   d0 d1
-    //   d2 d3
-    // with two ancillas for the two face stabilizers.
+    // Distance-3 rotated surface-code Z-stabilizer round.
+    // Data layout (row-major):
+    //   d0 d1 d2
+    //   d3 d4 d5
+    //   d6 d7 d8
+    // Four ancillas measure the four face stabilizers.
+
+    operation MeasureZStabilizers(data : Qubit[], ancilla : Qubit[]) : Unit {
+        // Face 0: Z(d0) Z(d1) Z(d3) Z(d4)
+        CNOT(data[0], ancilla[0]);
+        CNOT(data[1], ancilla[0]);
+        CNOT(data[3], ancilla[0]);
+        CNOT(data[4], ancilla[0]);
+
+        // Face 1: Z(d1) Z(d2) Z(d4) Z(d5)
+        CNOT(data[1], ancilla[1]);
+        CNOT(data[2], ancilla[1]);
+        CNOT(data[4], ancilla[1]);
+        CNOT(data[5], ancilla[1]);
+
+        // Face 2: Z(d3) Z(d4) Z(d6) Z(d7)
+        CNOT(data[3], ancilla[2]);
+        CNOT(data[4], ancilla[2]);
+        CNOT(data[6], ancilla[2]);
+        CNOT(data[7], ancilla[2]);
+
+        // Face 3: Z(d4) Z(d5) Z(d7) Z(d8)
+        CNOT(data[4], ancilla[3]);
+        CNOT(data[5], ancilla[3]);
+        CNOT(data[7], ancilla[3]);
+        CNOT(data[8], ancilla[3]);
+    }
+
     @EntryPoint()
-    operation Main() : (Result, Result) {
-        use data = Qubit[4];
-        use ancilla = Qubit[2];
+    operation Main() : Result[] {
+        use data = Qubit[9];
+        use ancilla = Qubit[4];
 
-        let d0 = data[0];
-        let d1 = data[1];
-        let d2 = data[2];
-        let d3 = data[3];
-        let a0 = ancilla[0];
-        let a1 = ancilla[1];
+        // Optional deterministic fault on the center data qubit.
+        X(data[4]);
 
-        // Optional deterministic fault for testing.
-        X(d1);
+        MeasureZStabilizers(data, ancilla);
 
-        // Z-stabilizer round (face checks).
-        // a0 measures Z(d0)Z(d1)Z(d2)
-        CNOT(d0, a0);
-        CNOT(d1, a0);
-        CNOT(d2, a0);
-
-        // a1 measures Z(d1)Z(d3)
-        CNOT(d1, a1);
-        CNOT(d3, a1);
-
-        let s0 = M(a0);
-        let s1 = M(a1);
-
+        let results = MeasureEachZ(ancilla);
         ResetAll(data);
         ResetAll(ancilla);
-        return (s0, s1);
+        return results;
     }
 }
