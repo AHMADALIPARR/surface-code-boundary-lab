@@ -8,13 +8,11 @@
 |---|---|
 | This repository is a laboratory for finite surface codes, boundary-distance analysis, multi-language circuit backends, and a set of experimental cipher and maze modules. It is licensed AGPL-3.0-or-later under the SnapKitty Collective and the Bel esprit D'accord Trust. The live site is at https://ahmadaliparr.github.io/surface-code-boundary-lab/. From any page the nav reaches Library, Circuit, Lens, Maze, 2D, Z408, Cipher, and Atlas. | 本儲存庫是一個有限表面碼實驗室，包含邊界距離分析、多語言電路後端，以及一組實驗性的密碼與迷宮模組。授權為 AGPL-3.0 或更新版本，歸屬於 SnapKitty Collective 與 Bel esprit D'accord Trust。線上站點位於 https://ahmadaliparr.github.io/surface-code-boundary-lab/。 |
 
-**Live / 線上：** [ahmadaliparr.github.io/surface-code-boundary-lab](https://ahmadaliparr.github.io/surface-code-boundary-lab/)
-
 ## Live / 線上頁面
 
 | Page | 頁面 | What / 內容 |
 |---|---|---|
-| [Library](https://ahmadaliparr.github.io/surface-code-boundary-lab/) | 圖書館 | Index / 索引 |
+| [Home](https://ahmadaliparr.github.io/surface-code-boundary-lab/) | 首頁 | Main page / 主頁 |
 | [Circuit](https://ahmadaliparr.github.io/surface-code-boundary-lab/circuit.html) | 電路 | Gates, statevector, Bloch / 閘、態向量、布洛赫 |
 | [Lens](https://ahmadaliparr.github.io/surface-code-boundary-lab/quantum_lens.html) | 透鏡 | QPU control / 控制室 |
 | [Maze](https://ahmadaliparr.github.io/surface-code-boundary-lab/maze.html) | 迷宮 | Spine 64 nodes / 節點 |
