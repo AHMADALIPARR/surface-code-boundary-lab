@@ -1,24 +1,29 @@
 # Surface Code Boundary Lab
+# 表面碼邊界實驗室
 
 [![live](https://img.shields.io/badge/live-atlas-58a6ff?style=flat-square)](https://ahmadaliparr.github.io/surface-code-boundary-lab/)
 [![license](https://img.shields.io/badge/license-AGPL--3.0-blue?style=flat-square)](LICENSE)
 
-**Live:** [ahmadaliparr.github.io/surface-code-boundary-lab](https://ahmadaliparr.github.io/surface-code-boundary-lab/)
-
-## Live
-
-| Page | What |
+| English | 繁體中文 |
 |---|---|
-| [Library](https://ahmadaliparr.github.io/surface-code-boundary-lab/) | Index |
-| [Circuit](https://ahmadaliparr.github.io/surface-code-boundary-lab/circuit.html) | Algorithmic gates, statevector, Bloch |
-| [Lens](https://ahmadaliparr.github.io/surface-code-boundary-lab/quantum_lens.html) | QPU control, bifurcation swarm |
-| [Maze](https://ahmadaliparr.github.io/surface-code-boundary-lab/maze.html) | Spine 64 nodes, mock key |
-| [2D](https://ahmadaliparr.github.io/surface-code-boundary-lab/autistic2d.html) | Prototype heap, brutalist canvas |
-| [Z408](https://ahmadaliparr.github.io/surface-code-boundary-lab/z408.html) | Homophonic, reverse, mirror |
-| [Cipher](https://ahmadaliparr.github.io/surface-code-boundary-lab/cipher.html) | Z408 / Z340 paths |
-| [Atlas](https://ahmadaliparr.github.io/surface-code-boundary-lab/ATLAS.md) | This text |
+| This repository is a laboratory for finite surface codes, boundary-distance analysis, multi-language circuit backends, and a set of experimental cipher and maze modules. It is licensed AGPL-3.0-or-later under the SnapKitty Collective and the Bel esprit D'accord Trust. The live site is at https://ahmadaliparr.github.io/surface-code-boundary-lab/. From any page the nav reaches Library, Circuit, Lens, Maze, 2D, Z408, Cipher, and Atlas. | 本儲存庫是一個有限表面碼實驗室，包含邊界距離分析、多語言電路後端，以及一組實驗性的密碼與迷宮模組。授權為 AGPL-3.0 或更新版本，歸屬於 SnapKitty Collective 與 Bel esprit D'accord Trust。線上站點位於 https://ahmadaliparr.github.io/surface-code-boundary-lab/。 |
 
-## Diagrams
+**Live / 線上：** [ahmadaliparr.github.io/surface-code-boundary-lab](https://ahmadaliparr.github.io/surface-code-boundary-lab/)
+
+## Live / 線上頁面
+
+| Page | 頁面 | What / 內容 |
+|---|---|---|
+| [Library](https://ahmadaliparr.github.io/surface-code-boundary-lab/) | 圖書館 | Index / 索引 |
+| [Circuit](https://ahmadaliparr.github.io/surface-code-boundary-lab/circuit.html) | 電路 | Gates, statevector, Bloch / 閘、態向量、布洛赫 |
+| [Lens](https://ahmadaliparr.github.io/surface-code-boundary-lab/quantum_lens.html) | 透鏡 | QPU control / 控制室 |
+| [Maze](https://ahmadaliparr.github.io/surface-code-boundary-lab/maze.html) | 迷宮 | Spine 64 nodes / 節點 |
+| [2D](https://ahmadaliparr.github.io/surface-code-boundary-lab/autistic2d.html) | 二維 | Prototype heap / 原型堆積 |
+| [Z408](https://ahmadaliparr.github.io/surface-code-boundary-lab/z408.html) | 密碼 | Homophonic / 同音 |
+| [Cipher](https://ahmadaliparr.github.io/surface-code-boundary-lab/cipher.html) | 工作台 | Z408 / Z340 |
+| [Atlas](https://ahmadaliparr.github.io/surface-code-boundary-lab/ATLAS.md) | 圖集 | This text / 本文 |
+
+## Diagrams / 圖
 
 | Bloch | Bell | Lattice | Circuit |
 |---|---|---|---|
@@ -27,8 +32,6 @@
 ![Vulnerability](visuals/vulnerability_map.jpg)
 
 ## English
-
-This repository is a laboratory for finite surface codes, boundary-distance analysis, multi-language circuit backends, and a set of experimental cipher and maze modules. It is licensed AGPL-3.0-or-later under the SnapKitty Collective and the Bel esprit D'accord Trust. The live site is at https://ahmadaliparr.github.io/surface-code-boundary-lab/. From any page the nav reaches Library, Circuit, Lens, Maze, 2D, Z408, Cipher, and Atlas.
 
 A surface code protects a logical qubit by topology. On a finite patch the topology has edges. The vulnerability index used here is the shortest path, on the decoder matching graph, from a detector to the nearest boundary node. Short distances mean a matching can terminate at the boundary cheaply; those detectors are more exposed. The map in visuals/vulnerability_map.jpg colors that index. Warm tones mark short distances, cool tones mark longer ones. Corner and edge detectors score low; the center scores high. The same procedure works for biased noise because the distances come from the actual matching graph, not a geometric shortcut.
 
@@ -79,8 +82,6 @@ Release v0.1.0 tags the public snapshot. Topics on the repository are quantum-co
 The continuous-integration workflow installs Python 3.11, generates a Stim circuit, runs the MLIR interpreter, then compiles and executes the C, C++, and Fortran backends on Ubuntu. A green run means those entry points still build.
 
 ## 繁體中文
-
-本儲存庫是一個有限表面碼實驗室，包含邊界距離分析、多語言電路後端，以及一組實驗性的密碼與迷宮模組。授權為 AGPL-3.0 或更新版本，歸屬於 SnapKitty Collective 與 Bel esprit D'accord Trust。線上站點位於 https://ahmadaliparr.github.io/surface-code-boundary-lab/。
 
 表面碼以拓撲保護邏輯量子位。有限晶格的拓撲有邊界。此處使用的脆弱度指標，是解碼器匹配圖上從一個偵測器到最近邊界節點的最短路徑。距離短表示匹配可以低成本在邊界終止，該偵測器較暴露。visuals/vulnerability_map.jpg 以顏色顯示此指標。暖色為短距離，冷色為長距離。角落與邊緣得分低，中心得分高。因為距離來自實際匹配圖而非幾何捷徑，同一程序也適用於偏置噪聲。
 
