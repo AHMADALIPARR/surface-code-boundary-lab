@@ -159,3 +159,19 @@ int main(int argc, char** argv) {
     counts.dump();
     return 0;
 }
+
+// Logical operators for the distance-3 patch.
+__qpu__ void apply_logical_z(cudaq::qview<> data) {
+    z(data[0]); z(data[1]); z(data[2]);
+}
+
+__qpu__ void apply_logical_x(cudaq::qview<> data) {
+    x(data[0]); x(data[3]); x(data[6]);
+}
+
+// Detector-style comparison helper (classical post-processing stub).
+int parity_of_results(const std::vector<int>& bits) {
+    int p = 0;
+    for (int b : bits) p ^= b;
+    return p;
+}

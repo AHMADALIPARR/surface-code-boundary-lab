@@ -100,3 +100,54 @@ surfaceCode = do
 
 main :: IO ()
 main = print_simple ASCII surfaceCode
+
+-- Additional helpers for multi-round extraction and logical operators.
+
+-- Repeat a syndrome round n times, collecting bits.
+multiRound :: Int -> [Qubit] -> [Qubit] -> [Qubit] -> [Qubit] -> [Qubit]
+           -> Circ [([Bit], [Bit], [Bit], [Bit])]
+multiRound 0 _ _ _ _ _ = return []
+multiRound n d zb xb zbd xbd = do
+  bits <- syndromeRound d zb xb zbd xbd
+  rest <- multiRound (n-1) d zb xb zbd xbd
+  return (bits : rest)
+
+-- Logical Z operator on the first row (weight-3).
+logicalZ :: [Qubit] -> Circ [Qubit]
+logicalZ d = do
+  d0 <- zGate (d !! 0)
+  d1 <- zGate (d !! 1)
+  d2 <- zGate (d !! 2)
+  return (d0 : d1 : d2 : drop 3 d)
+
+-- Logical X operator on the first column (weight-3).
+logicalX :: [Qubit] -> Circ [Qubit]
+logicalX d = do
+  d0 <- xGate (d !! 0)
+  d3 <- xGate (d !! 3)
+  d6 <- xGate (d !! 6)
+  return (d0 : take 2 (drop 1 d) ++ [d3] ++ take 2 (drop 4 d) ++ [d6] ++ drop 7 d)
+
+-- Placeholder gates (Quipper provides these; names may vary by version).
+zGate :: Qubit -> Circ Qubit
+zGate q = do
+  q <- hadamard q
+  q <- qnot q
+  q <- hadamard q
+  return q
+
+xGate :: Qubit -> Circ Qubit
+xGate q = qnot q
+
+-- Entry that runs three rounds and prints the circuit.
+surfaceCodeMulti :: Circ [([Bit], [Bit], [Bit], [Bit])]
+surfaceCodeMulti = do
+  d   <- mapM (const (qinit False)) [1..9]
+  zb  <- mapM (const (qinit False)) [1..4]
+  xb  <- mapM (const (qinit False)) [1..4]
+  zbd <- mapM (const (qinit False)) [1..4]
+  xbd <- mapM (const (qinit False)) [1..4]
+  d'  <- injectX d 4
+  hist <- multiRound 3 d' zb xb zbd xbd
+  mapM_ qdiscard (d' ++ zb ++ xb ++ zbd ++ xbd)
+  return hist

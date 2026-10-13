@@ -122,3 +122,26 @@ namespace SurfaceCodeBoundaryLab {
         return RunMemory(3, 4, PauliX);
     }
 }
+
+    operation ApplyLogicalZ(data : Qubit[]) : Unit {
+        Z(data[0]); Z(data[1]); Z(data[2]);
+    }
+
+    operation ApplyLogicalX(data : Qubit[]) : Unit {
+        X(data[0]); X(data[3]); X(data[6]);
+    }
+
+    operation Parity(results : Result[]) : Result {
+        mutable p = Zero;
+        for r in results {
+            if r == One { set p = p == Zero ? One | Zero; }
+        }
+        return p;
+    }
+
+    operation RunWithLogical(rounds : Int) : Result {
+        use data = Qubit[9];
+        ApplyLogicalZ(data);
+        let (_, _, _, _, final) = RunMemory(rounds, -1, PauliI);
+        return Parity(final);
+    }
