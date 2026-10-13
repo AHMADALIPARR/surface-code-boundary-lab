@@ -17,6 +17,13 @@ Multi-backend surface-code laboratory: stabilizer extraction, boundary-distance 
 
 ![Vulnerability map](visuals/vulnerability_map.jpg)
 
+
+## Visualizations
+
+| Lattice | Bloch | Circuit |
+|---|---|---|
+| ![lattice](visuals/quantum/lattice.svg) | ![bloch](visuals/quantum/bloch.svg) | ![circuit](visuals/quantum/circuit.svg) |
+
 ## Layout
 
 | Path | What |

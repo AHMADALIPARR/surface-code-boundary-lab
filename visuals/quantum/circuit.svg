@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="180" viewBox="0 0 520 180">
+<rect width="520" height="180" fill="#07080a"/>
+<g stroke="#30363d" stroke-width="1">
+<line x1="40" y1="40" x2="480" y2="40"/>
+<line x1="40" y1="90" x2="480" y2="90"/>
+<line x1="40" y1="140" x2="480" y2="140"/>
+</g>
+<rect x="80" y="25" width="30" height="30" fill="none" stroke="#58a6ff"/>
+<text x="95" y="45" fill="#58a6ff" font-family="monospace" font-size="14" text-anchor="middle">H</text>
+<rect x="160" y="75" width="30" height="30" fill="none" stroke="#3fb950"/>
+<text x="175" y="95" fill="#3fb950" font-family="monospace" font-size="12" text-anchor="middle">X</text>
+<line x1="175" y1="40" x2="175" y2="75" stroke="#3fb950"/>
+<circle cx="175" cy="40" r="4" fill="#3fb950"/>
+<rect x="280" y="125" width="36" height="30" fill="none" stroke="#d29922"/>
+<text x="298" y="145" fill="#d29922" font-family="monospace" font-size="11" text-anchor="middle">M</text>
+<text x="20" y="44" fill="#6e7681" font-family="monospace" font-size="11">q0</text>
+<text x="20" y="94" fill="#6e7681" font-family="monospace" font-size="11">q1</text>
+<text x="20" y="144" fill="#6e7681" font-family="monospace" font-size="11">q2</text>
+</svg>
