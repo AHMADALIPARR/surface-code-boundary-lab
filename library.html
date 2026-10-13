@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Art Library — Surface Code Boundary Lab</title>
+<style>
+  :root { --bg:#07080a; --panel:#0e1014; --line:#1c2128; --text:#c9d1d9; --dim:#6e7681; --cyan:#58a6ff; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:ui-monospace,monospace; }
+  header { padding:1.2rem 1.5rem; border-bottom:1px solid var(--line); }
+  header h1 { margin:0; font-size:1rem; letter-spacing:.12em; color:var(--cyan); }
+  header p { margin:.3rem 0 0; color:var(--dim); font-size:.75rem; }
+  main { max-width:960px; margin:0 auto; padding:1.5rem; }
+  h2 { font-size:.75rem; color:var(--dim); letter-spacing:.1em; margin:1.5rem 0 .6rem; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:.8rem; }
+  a.card { display:block; background:var(--panel); border:1px solid var(--line); padding:.8rem; text-decoration:none; color:var(--text); }
+  a.card:hover { border-color:var(--cyan); }
+  a.card strong { display:block; margin-bottom:.3rem; }
+  a.card span { color:var(--dim); font-size:.7rem; }
+  img.thumb { width:100%; height:80px; object-fit:cover; background:#050608; margin-bottom:.4rem; }
+</style>
+</head>
+<body>
+<header>
+  <h1>ART LIBRARY</h1>
+  <p>Surface Code Boundary Lab — interactive atlas</p>
+</header>
+<main>
+  <h2>LIVE</h2>
+  <div class="grid">
+    <a class="card" href="circuit.html"><strong>Circuit</strong><span>Algorithmic gates · live state</span></a>
+    <a class="card" href="quantum_lens.html"><strong>Quantum Lens</strong><span>QPU control · bifurcation swarm</span></a>
+    <a class="card" href="maze.html"><strong>Voyager Maze</strong><span>Spine 64 nodes · mock key</span></a>
+    <a class="card" href="z408.html"><strong>Z408 Cipher</strong><span>Homophonic · reverse · mirror</span></a>
+    <a class="card" href="cipher.html"><strong>Cipher Bench</strong><span>Z408 / Z340 paths</span></a>
+  </div>
+  <h2>DIAGRAMS</h2>
+  <div class="grid">
+    <a class="card" href="visuals/quantum/bloch.svg"><img class="thumb" src="visuals/quantum/bloch.svg" alt=""><strong>Bloch</strong><span>state vector</span></a>
+    <a class="card" href="visuals/quantum/bell.svg"><img class="thumb" src="visuals/quantum/bell.svg" alt=""><strong>Bell</strong><span>H · CNOT</span></a>
+    <a class="card" href="visuals/quantum/lattice.svg"><img class="thumb" src="visuals/quantum/lattice.svg" alt=""><strong>Lattice</strong><span>rotated surface code</span></a>
+    <a class="card" href="visuals/quantum/circuit.svg"><img class="thumb" src="visuals/quantum/circuit.svg" alt=""><strong>Circuit</strong><span>H · CNOT · M</span></a>
+  </div>
+  <h2>MAPS</h2>
+  <div class="grid">
+    <a class="card" href="visuals/vulnerability_map.jpg"><img class="thumb" src="visuals/vulnerability_map.jpg" alt=""><strong>Vulnerability</strong><span>boundary distance</span></a>
+    <a class="card" href="visuals/lattice_animation.gif"><img class="thumb" src="visuals/lattice_animation.gif" alt=""><strong>Animation</strong><span>defect lattice</span></a>
+    <a class="card" href="visuals/pipeline.svg"><img class="thumb" src="visuals/pipeline.svg" alt=""><strong>Pipeline</strong><span>backends → analysis</span></a>
+  </div>
+</main>
+</body>
+</html>
