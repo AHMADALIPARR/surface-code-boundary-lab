@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Voyager Maze</title>
+<style>
+  :root { --bg:#0c0d0f; --paper:#eceae4; --steel:#9aabba; --accent:#c45c26; }
+  body { margin:0; font-family:ui-monospace,monospace; background:var(--bg); color:var(--paper); }
+  header { padding:1rem 1.5rem; border-bottom:1px solid #222; }
+  header h1 { margin:0; font-size:1.1rem; }
+  main { padding:1rem; max-width:720px; }
+  label { display:block; font-size:.75rem; color:var(--steel); margin:.6rem 0 .2rem; }
+  input, button { background:#1a1b1d; color:var(--paper); border:1px solid #333; padding:.4rem .7rem; font-family:inherit; }
+  button { background:var(--accent); border-color:var(--accent); color:#fff; cursor:pointer; }
+  .nodes { display:flex; flex-wrap:wrap; gap:.4rem; margin:.8rem 0; }
+  .node { padding:.4rem .6rem; border:1px solid #333; cursor:pointer; font-size:.8rem; }
+  .node.start { border-color:#3a7; }
+  .node.goal { border-color:var(--accent); }
+  .node.here { background:#1e2a22; }
+  #log { margin-top:1rem; font-size:.8rem; white-space:pre-wrap; color:var(--steel); }
+  .status { margin-top:.5rem; font-size:.8rem; }
+</style>
+</head>
+<body>
+<header><h1>Voyager Maze — Spine 64 Nodes</h1></header>
+<main>
+  <label>Mock key</label>
+  <input id="key" type="password" placeholder="SNAPKITTY-VOYAGER-..." style="width:100%;max-width:28rem">
+  <button id="unlock">Unlock</button>
+  <div class="status" id="status">Locked</div>
+
+  <label>Nodes (click to move)</label>
+  <div class="nodes" id="nodes"></div>
+  <div id="log"></div>
+</main>
+<script>
+const NODES = {
+  zeta_node_00: "0x02.14AB",
+  zeta_node_01: "0x03.21CD",
+  zeta_node_02: "0x05.25EF",
+  zeta_node_0F: "0x35.67AB",
+  zeta_node_63: "0xFB.FF00"
+};
+const START = "zeta_node_00";
+const GOAL = "zeta_node_0F";
+const MOCK = "SNAPKITTY-VOYAGER-408-340-SPINE64";
+
+let pos = START;
+let unlocked = false;
+const logEl = document.getElementById("log");
+const statusEl = document.getElementById("status");
+
+function render() {
+  const box = document.getElementById("nodes");
+  box.innerHTML = "";
+  for (const [name, tok] of Object.entries(NODES)) {
+    const d = document.createElement("div");
+    d.className = "node" + (name===START?" start":"") + (name===GOAL?" goal":"") + (name===pos?" here":"");
+    d.textContent = name.replace("zeta_node_","") + " " + tok;
+    d.onclick = () => move(name);
+    box.appendChild(d);
+  }
+}
+function move(target) {
+  if (!unlocked) { log("LOCKED"); return; }
+  pos = target;
+  const msg = (target===GOAL) ? "ESCAPE — platform reached" : "MOVE " + target;
+  log(msg);
+  render();
+  if (target===GOAL) statusEl.textContent = "Escaped";
+}
+function log(s) { logEl.textContent += s + "\n"; }
+document.getElementById("unlock").onclick = () => {
+  const k = document.getElementById("key").value;
+  unlocked = (k === MOCK);
+  statusEl.textContent = unlocked ? "Unlocked" : "Bad key";
+  if (unlocked) { pos = START; log("Key accepted. Start at " + START); render(); }
+};
+render();
+</script>
+</body>
+</html>
