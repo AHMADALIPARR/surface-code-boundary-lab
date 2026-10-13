@@ -50,6 +50,6 @@ PYTHONPATH=src python3 src/sim/qsim.py
 
 ## Docs
 
-[Spine](docs/multiplicity/64_layer_premidoral_spine.md) · [Hex cipher](docs/multiplicity/spine64_hex_cipher.md) · [Analysis](docs/ANALYSIS_CONTRACT.md)
+[Atlas](docs/ATLAS.md) · [Spine](docs/multiplicity/64_layer_premidoral_spine.md) · [Hex cipher](docs/multiplicity/spine64_hex_cipher.md) · [Analysis](docs/ANALYSIS_CONTRACT.md)
 
 AGPL-3.0-or-later · SnapKitty Collective / Bel esprit D'accord Trust
