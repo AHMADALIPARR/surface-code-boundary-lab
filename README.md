@@ -1,9 +1,9 @@
 # Surface Code Boundary Lab
 
-[![demo](https://img.shields.io/badge/atlas-live-58a6ff?style=flat-square)](https://ahmadaliparr.github.io/surface-code-boundary-lab/docs/library.html)
+[![demo](https://img.shields.io/badge/atlas-live-58a6ff?style=flat-square)](https://ahmadaliparr.github.io/surface-code-boundary-lab/)
 [![license](https://img.shields.io/badge/license-AGPL--3.0-blue?style=flat-square)](LICENSE)
 
-**Atlas:** [ahmadaliparr.github.io/surface-code-boundary-lab/docs/library.html](https://ahmadaliparr.github.io/surface-code-boundary-lab/docs/library.html)
+**Atlas:** [ahmadaliparr.github.io/surface-code-boundary-lab/docs/library.html](https://ahmadaliparr.github.io/surface-code-boundary-lab/)
 
 ![Bloch](visuals/quantum/bloch.png)
 
@@ -11,10 +11,10 @@
 
 | | |
 |---|---|
-| [Quantum Lens](https://ahmadaliparr.github.io/surface-code-boundary-lab/docs/quantum_lens.html) | QPU control, bifurcation swarm |
-| [Voyager Maze](https://ahmadaliparr.github.io/surface-code-boundary-lab/docs/maze.html) | Spine 64 nodes, mock key |
-| [Z408](https://ahmadaliparr.github.io/surface-code-boundary-lab/docs/z408.html) | Homophonic, reverse, mirror |
-| [Cipher Bench](https://ahmadaliparr.github.io/surface-code-boundary-lab/docs/cipher.html) | Z408 / Z340 paths |
+| [Quantum Lens](https://ahmadaliparr.github.io/surface-code-boundary-lab/quantum_lens.html) | QPU control, bifurcation swarm |
+| [Voyager Maze](https://ahmadaliparr.github.io/surface-code-boundary-lab/maze.html) | Spine 64 nodes, mock key |
+| [Z408](https://ahmadaliparr.github.io/surface-code-boundary-lab/z408.html) | Homophonic, reverse, mirror |
+| [Cipher Bench](https://ahmadaliparr.github.io/surface-code-boundary-lab/cipher.html) | Z408 / Z340 paths |
 
 ## Diagrams
 
