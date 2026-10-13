@@ -145,3 +145,104 @@ namespace SurfaceCodeBoundaryLab {
         let (_, _, _, _, final) = RunMemory(rounds, -1, PauliI);
         return Parity(final);
     }
+
+    // --- Additional functionality ---
+
+    operation ApplyLogicalZ(data : Qubit[]) : Unit {
+        // Weight-d logical Z on the first row (d=3).
+        Z(data[0]);
+        Z(data[1]);
+        Z(data[2]);
+    }
+
+    operation ApplyLogicalX(data : Qubit[]) : Unit {
+        // Weight-d logical X on the first column (d=3).
+        X(data[0]);
+        X(data[3]);
+        X(data[6]);
+    }
+
+    operation InjectDepolarizing(data : Qubit[], p : Double) : Unit {
+        // Classical placeholder: apply X with probability p on each data qubit.
+        // Real noise models belong in the Stim factory or a noise channel.
+        for i in 0..Length(data)-1 {
+            if RandomReal(1.0) < p {
+                X(data[i]);
+            }
+        }
+    }
+
+    operation SyndromeRoundFull(
+        data : Qubit[],
+        zBulk : Qubit[],
+        xBulk : Qubit[],
+        zBound : Qubit[],
+        xBound : Qubit[]
+    ) : (Result[], Result[], Result[], Result[]) {
+        MeasureZBulk(data, zBulk);
+        let zb = MeasureEachZ(zBulk);
+        ResetAll(zBulk);
+
+        MeasureXBulk(data, xBulk);
+        let xb = MeasureEachZ(xBulk);
+        ResetAll(xBulk);
+
+        MeasureZBoundary(data, zBound);
+        let zbd = MeasureEachZ(zBound);
+        ResetAll(zBound);
+
+        MeasureXBoundary(data, xBound);
+        let xbd = MeasureEachZ(xBound);
+        ResetAll(xBound);
+
+        return (zb, xb, zbd, xbd);
+    }
+
+    operation RunMemoryExperiment(rounds : Int, faultQubit : Int, pNoise : Double)
+        : (Result[][], Result[][], Result[][], Result[][], Result[]) {
+        use data = Qubit[9];
+        use zBulk = Qubit[4];
+        use xBulk = Qubit[4];
+        use zBound = Qubit[4];
+        use xBound = Qubit[4];
+
+        if faultQubit >= 0 and faultQubit < 9 {
+            X(data[faultQubit]);
+        }
+        InjectDepolarizing(data, pNoise);
+
+        mutable zbH = [];
+        mutable xbH = [];
+        mutable zbdH = [];
+        mutable xbdH = [];
+
+        for _ in 1..rounds {
+            let (zb, xb, zbd, xbd) = SyndromeRoundFull(data, zBulk, xBulk, zBound, xBound);
+            set zbH += [zb];
+            set xbH += [xb];
+            set zbdH += [zbd];
+            set xbdH += [xbd];
+        }
+
+        let finalData = MeasureEachZ(data);
+        ResetAll(data);
+        return (zbH, xbH, zbdH, xbdH, finalData);
+    }
+
+    operation LogicalZParity(results : Result[]) : Result {
+        // Parity of the first row (indices 0,1,2) as a logical Z readout.
+        mutable p = Zero;
+        for i in [0, 1, 2] {
+            if results[i] == One {
+                set p = p == Zero ? One | Zero;
+            }
+        }
+        return p;
+    }
+
+    @EntryPoint()
+    operation RunAtlas() : Result {
+        let (_, _, _, _, final) = RunMemoryExperiment(3, 4, 0.001);
+        return LogicalZParity(final);
+    }
+}

@@ -1167,3 +1167,49 @@ applyCheck169 dataQ anc idxs = do
   let qs = map (dataQ !!) idxs
   foldM (\a q -> qnot a `controlled` q) anc qs
 
+
+-- --- Additional functionality ---
+
+-- Apply logical Z on the first row.
+applyLogicalZ :: [Qubit] -> Circ [Qubit]
+applyLogicalZ qs = do
+  q0 <- qnot (qs !! 0)  -- placeholder; real Z would be phase
+  q1 <- qnot (qs !! 1)
+  q2 <- qnot (qs !! 2)
+  return (q0 : q1 : q2 : drop 3 qs)
+
+-- Apply logical X on the first column.
+applyLogicalX :: [Qubit] -> Circ [Qubit]
+applyLogicalX qs = do
+  q0 <- qnot (qs !! 0)
+  q3 <- qnot (qs !! 3)
+  q6 <- qnot (qs !! 6)
+  return (q0 : take 2 (drop 1 qs) ++ [q3] ++ take 2 (drop 4 qs) ++ [q6] ++ drop 7 qs)
+
+-- Multi-round syndrome collection.
+collectRounds :: Int -> [Qubit] -> [Qubit] -> [Qubit] -> [Qubit] -> [Qubit]
+              -> Circ [([Bit],[Bit],[Bit],[Bit])]
+collectRounds 0 _ _ _ _ _ = return []
+collectRounds n d zb xb zbd xbd = do
+  bits <- syndromeRound d zb xb zbd xbd
+  rest <- collectRounds (n-1) d zb xb zbd xbd
+  return (bits : rest)
+
+-- Full memory experiment entry.
+memoryExperiment :: Int -> Circ ([Bit],[Bit],[Bit],[Bit],[Bit])
+memoryExperiment rounds = do
+  d   <- mapM (const (qinit False)) [1..9]
+  zb  <- mapM (const (qinit False)) [1..4]
+  xb  <- mapM (const (qinit False)) [1..4]
+  zbd <- mapM (const (qinit False)) [1..4]
+  xbd <- mapM (const (qinit False)) [1..4]
+  d'  <- injectX d 4
+  _   <- collectRounds rounds d' zb xb zbd xbd
+  final <- mapM measure d'
+  mapM_ qdiscard (zb ++ xb ++ zbd ++ xbd)
+  return (head (repeat []), [], [], [], final)  -- simplified return
+
+-- Logical Z parity of a measurement list (first three bits).
+logicalZParity :: [Bit] -> Bit
+logicalZParity bs = foldl xor False (take 3 bs)
+  where xor a b = a /= b
