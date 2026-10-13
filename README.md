@@ -20,9 +20,11 @@ Multi-backend surface-code laboratory: stabilizer extraction, boundary-distance 
 
 ## Visualizations
 
-| Lattice | Bloch | Circuit |
-|---|---|---|
-| ![lattice](visuals/quantum/lattice.svg) | ![bloch](visuals/quantum/bloch.svg) | ![circuit](visuals/quantum/circuit.svg) |
+![Bloch sphere](visuals/quantum/bloch.png)
+
+| Lattice | Circuit |
+|---|---|
+| ![lattice](visuals/quantum/lattice.svg) | ![circuit](visuals/quantum/circuit.svg) |
 
 ## Layout
 
