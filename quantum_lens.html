@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Quantum Lens — Control</title>
+<style>
+  :root {
+    --bg:#07080a; --panel:#0e1014; --line:#1c2128; --text:#c9d1d9;
+    --dim:#6e7681; --cyan:#58a6ff; --green:#3fb950; --amber:#d29922; --red:#f85149;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font-family:ui-monospace,monospace; font-size:12px; }
+  header { display:flex; justify-content:space-between; align-items:center; padding:.6rem 1rem; border-bottom:1px solid var(--line); }
+  header h1 { margin:0; font-size:.85rem; letter-spacing:.12em; color:var(--cyan); }
+  .status-dot { width:8px; height:8px; border-radius:50%; background:var(--green); display:inline-block; margin-right:.4rem; box-shadow:0 0 6px var(--green); }
+  .layout { display:grid; grid-template-columns:220px 1fr 240px; gap:0; height:calc(100vh - 42px); }
+  .panel { background:var(--panel); border-right:1px solid var(--line); padding:.8rem; overflow:auto; }
+  .panel:last-child { border-right:none; border-left:1px solid var(--line); }
+  .panel h2 { margin:0 0 .6rem; font-size:.7rem; color:var(--dim); letter-spacing:.1em; }
+  canvas { display:block; width:100%; height:100%; background:#050608; }
+  .metric { display:flex; justify-content:space-between; padding:.35rem 0; border-bottom:1px solid #161b22; }
+  .metric span:last-child { color:var(--cyan); }
+  .qubit { display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; margin:2px; border:1px solid #30363d; border-radius:4px; font-size:10px; }
+  .qubit.on { border-color:var(--green); color:var(--green); box-shadow:inset 0 0 6px rgba(63,185,80,.3); }
+  .qubit.hot { border-color:var(--amber); color:var(--amber); }
+  .qubit.err { border-color:var(--red); color:var(--red); }
+  button { background:#21262d; color:var(--text); border:1px solid #30363d; padding:.3rem .6rem; font-family:inherit; cursor:pointer; margin-right:.3rem; }
+  button:hover { border-color:var(--cyan); }
+  #center { position:relative; }
+  #overlay { position:absolute; top:.5rem; left:.5rem; color:var(--dim); font-size:10px; }
+</style>
+</head>
+<body>
+<header>
+  <h1><span class="status-dot"></span>QPU-64 · SPINE CONTROL</h1>
+  <div id="clock">T+00:00:00</div>
+</header>
+<div class="layout">
+  <aside class="panel">
+    <h2>QUBIT ARRAY</h2>
+    <div id="qubits"></div>
+    <h2 style="margin-top:1rem">READOUT</h2>
+    <div class="metric"><span>T1</span><span id="t1">48.2 µs</span></div>
+    <div class="metric"><span>T2</span><span id="t2">31.7 µs</span></div>
+    <div class="metric"><span>Fidelity</span><span id="fid">99.41%</span></div>
+    <div class="metric"><span>Temp</span><span id="temp">14.8 mK</span></div>
+    <div class="metric"><span>Active</span><span id="active">12</span></div>
+  </aside>
+  <div id="center">
+    <canvas id="lens"></canvas>
+    <div id="overlay">COUPLING MAP · LIVE</div>
+  </div>
+  <aside class="panel">
+    <h2>BRANCH STATUS</h2>
+    <div class="metric"><span>Coherent</span><span id="n-coh" style="color:#3fb950">0</span></div>
+    <div class="metric"><span>Bifurcating</span><span id="n-bif" style="color:#58a6ff">0</span></div>
+    <div class="metric"><span>Shadow</span><span id="n-sh" style="color:#bc8cff">0</span></div>
+    <div class="metric"><span>Pruned</span><span id="n-pr" style="color:#f85149">0</span></div>
+    <h2 style="margin-top:1rem">CONTROLS</h2>
+    <button id="reset">Reset</button>
+    <button id="pause">Pause</button>
+    <p style="color:var(--dim);margin-top:1rem;line-height:1.5">
+      Emerald: QSL valid<br>
+      Cyan: multiplicity fork<br>
+      Violet: zeta resonance<br>
+      Red: leakage prune
+    </p>
+  </aside>
+</div>
+<script>
+const canvas = document.getElementById('lens');
+const ctx = canvas.getContext('2d');
+const qbox = document.getElementById('qubits');
+let nodes = [], step = 0, running = true, pruned = 0, t0 = Date.now();
+
+function resize() {
+  canvas.width = canvas.parentElement.clientWidth;
+  canvas.height = canvas.parentElement.clientHeight;
+}
+window.addEventListener('resize', resize); resize();
+
+const C = { coh:'#3fb950', bif:'#58a6ff', sh:'#bc8cff', leak:'#f85149' };
+
+function buildQubits() {
+  qbox.innerHTML = '';
+  for (let i = 0; i < 64; i++) {
+    const d = document.createElement('div');
+    d.className = 'qubit';
+    d.id = 'q'+i;
+    d.textContent = i.toString(16).toUpperCase();
+    qbox.appendChild(d);
+  }
+}
+function spawn() {
+  return { x: canvas.width/2 + (Math.random()*60-30), y: canvas.height-20, vy:-1.4-Math.random()*0.5, color:C.coh, gen:0, q:Math.floor(Math.random()*64) };
+}
+function init() { nodes = [spawn(), spawn(), spawn()]; pruned = 0; }
+
+function frame() {
+  if (!running) { requestAnimationFrame(frame); return; }
+  ctx.fillStyle = 'rgba(5,6,8,0.22)';
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+
+  // Coupling grid
+  ctx.strokeStyle = '#161b22';
+  ctx.lineWidth = 1;
+  for (let x = 40; x < canvas.width; x += 40) { ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,canvas.height); ctx.stroke(); }
+  for (let y = 40; y < canvas.height; y += 40) { ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(canvas.width,y); ctx.stroke(); }
+
+  step += 0.015;
+  let nCoh=0, nBif=0, nSh=0;
+  for (let i = nodes.length-1; i >= 0; i--) {
+    const n = nodes[i];
+    n.x += Math.sin(step + n.gen)*1.1;
+    n.y += n.vy;
+    if (n.color===C.coh) nCoh++; else if (n.color===C.bif) nBif++; else if (n.color===C.sh) nSh++;
+
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, Math.max(1.5, 5-n.gen*0.7), 0, Math.PI*2);
+    ctx.fillStyle = n.color;
+    ctx.shadowBlur = 14; ctx.shadowColor = n.color; ctx.fill(); ctx.shadowBlur = 0;
+
+    if (n.y < canvas.height*0.5 && n.gen < 5 && Math.random() < 0.05) {
+      n.color = C.bif;
+      const sp = 20/(n.gen+1);
+      nodes.push({ x:n.x-sp, y:n.y, vy:-1.3, color: Math.random()<0.3?C.leak:C.sh, gen:n.gen+1, q:n.q });
+      nodes.push({ x:n.x+sp, y:n.y, vy:-1.3, color:C.coh, gen:n.gen+1, q:(n.q+1)%64 });
+    }
+    if (n.y < 8 || n.color===C.leak) { if (n.color===C.leak) pruned++; nodes.splice(i,1); }
+  }
+  while (nodes.length < 10) nodes.push(spawn());
+  if (nodes.length > 180) nodes.splice(0, nodes.length-180);
+
+  // Update side panels
+  document.getElementById('n-coh').textContent = nCoh;
+  document.getElementById('n-bif').textContent = nBif;
+  document.getElementById('n-sh').textContent = nSh;
+  document.getElementById('n-pr').textContent = pruned;
+  document.getElementById('active').textContent = nodes.length;
+  document.getElementById('fid').textContent = (99.2 + Math.random()*0.5).toFixed(2)+'%';
+  document.getElementById('temp').textContent = (14.5 + Math.random()*0.6).toFixed(1)+' mK';
+  const el = Math.floor((Date.now()-t0)/1000);
+  document.getElementById('clock').textContent = 'T+'+String(Math.floor(el/3600)).padStart(2,'0')+':'+String(Math.floor(el/60)%60).padStart(2,'0')+':'+String(el%60).padStart(2,'0');
+
+  // Light random qubits
+  for (let i = 0; i < 64; i++) {
+    const elq = document.getElementById('q'+i);
+    elq.className = 'qubit' + (Math.random()<0.08?' on': Math.random()<0.02?' hot':'');
+  }
+  requestAnimationFrame(frame);
+}
+
+document.getElementById('reset').onclick = init;
+document.getElementById('pause').onclick = (e) => { running=!running; e.target.textContent = running?'Pause':'Resume'; };
+buildQubits(); init(); frame();
+</script>
+</body>
+</html>
